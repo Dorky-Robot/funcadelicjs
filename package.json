@@ -1,15 +1,15 @@
 {
-  "name": "functional-js",
+  "name": "funcadelic.js",
   "version": "0.9.0",
-  "description": "Functional.js is a set of functional functions implemented in plain ESM js.",
-  "main": "functional.js",
+  "description": "FuncadelicJS: Dive into a groovy world of functional programming, served fresh in plain ESM js.",
+  "main": "funcadelic.js",
   "scripts": {
     "test": "mocha ./*.test.js"
   },
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dorky-Robot/functionaljs.git"
+    "url": "git+https://github.com/Dorky-Robot/funcadelicjs.git"
   },
   "keywords": [
     "functional",
@@ -19,9 +19,9 @@
   "author": "Felix Flores",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Dorky-Robot/functionaljs/issues"
+    "url": "https://github.com/Dorky-Robot/funcadelicjs/issues"
   },
-  "homepage": "https://github.com/Dorky-Robot/functionaljs#readme",
+  "homepage": "https://github.com/Dorky-Robot/funcadelicjs#readme",
   "devDependencies": {
     "mocha": "^10.2.0"
   }

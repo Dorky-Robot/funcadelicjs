@@ -4,7 +4,7 @@ import {
   compose,
   identity,
   composePredicates,
-} from "./functional.js";
+} from "./funcadelic.js";
 
 // Sample functions for the tests
 const sum = (x, y) => x + y;
