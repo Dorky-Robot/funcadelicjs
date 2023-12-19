@@ -1,12 +1,12 @@
 ![Functional.js Logo](logo.png)
 
-# 🤖 functional.js
+# 🤖 funcadelic.js
 
-Hello, Functional Enthusiasts! Welcome to the quirky land of `functional-js`, a place where JavaScript meets functional programming. If you ever thought that programming could use a sprinkle of fun, then you're in the right place. 🎡
+Hello, Functional Enthusiasts! Welcome to the quirky land of `funcadelic.js`, a place where JavaScript meets functional programming. If you ever thought that programming could use a sprinkle of fun, then you're in the right place. 🎡
 
 ## Overview 🎪
 
-`functional-js` is a set of functional utilities implemented in pure ESM JS. It's like giving your JavaScript a functional candy 🍬 that tastes _purely_ sweet! Whether you want to compose functions like a maestro, tread through them seamlessly, or just need an identity check for your existential crises, `functional-js` has got you covered.
+`funcadelic.js` is a set of functional utilities implemented in pure ESM JS. It's like giving your JavaScript a functional candy 🍬 that tastes _purely_ sweet! Whether you want to compose functions like a maestro, tread through them seamlessly, or just need an identity check for your existential crises, `funcadelic.js` has got you covered.
 
 ## Features 🎢
 
@@ -17,7 +17,7 @@ Hello, Functional Enthusiasts! Welcome to the quirky land of `functional-js`, a 
 
 ## How to Contribute 🤹
 
-We believe in the magic of collaboration! If you're a wizard, witch, or even a muggle with an idea, here's how you can join the `functional-js` carnival:
+We believe in the magic of collaboration! If you're a wizard, witch, or even a muggle with an idea, here's how you can join the `funcadelic.js` carnival:
 
 1. **Fork and Clone**: Fork this repository and clone it to your local machine. Make sure you have the spell book (a.k.a. `package.json`) with you.
 2. **Branch Out**: Create a new branch for your enchanting feature or spellbinding fix.
@@ -27,7 +27,7 @@ We believe in the magic of collaboration! If you're a wizard, witch, or even a m
 
 ## Bugs & Issues 🕷
 
-Encountered a dragon? 🐉 Or maybe just a bug? Head over to our [issues](https://github.com/Dorky-Robot/functionaljs/issues) section and let us know. We'll summon our best dragon tamers and bug squashers!
+Encountered a dragon? 🐉 Or maybe just a bug? Head over to our [issues](https://github.com/Dorky-Robot/funcadelicjs/issues) section and let us know. We'll summon our best dragon tamers and bug squashers!
 
 ## Author 🧙
 
