@@ -1,18 +1,25 @@
 import assert from "assert";
-import {
+import * as funcadelic from "./funcadelic.js";
+
+const {
   threadFirst,
   compose,
   identity,
   composePredicates,
-} from "./funcadelic.js";
+  curry,
+  pipe,
+  mapObject,
+  filterObject,
+  maybe,
+  either,
+  foldObject,
+} = funcadelic;
 
-// Sample functions for the tests
-const sum = (x, y) => x + y;
-const diff = (x, y) => x - y;
-const str = (x) => x.toString();
-
-// Specifications (tests) for the `threadFirst` function
 describe("threadFirst", () => {
+  const sum = (x, y) => x + y;
+  const diff = (x, y) => x - y;
+  const str = (x) => x.toString();
+
   it('should transform a string "3" to "-4"', () => {
     const result = threadFirst("3", parseInt, [sum, 3], [diff, 10], str);
     assert.strictEqual(result, "-4");
@@ -35,15 +42,14 @@ describe("threadFirst", () => {
   });
 });
 
-// Specifications for the `compose` function
 describe("compose", () => {
   it("should compose multiple functions into a single function", () => {
     const add2 = (x) => x + 2;
     const multiplyBy3 = (x) => x * 3;
 
-    const composed = compose(add2, multiplyBy3); // This should first multiply by 3, then add 2
+    const composed = compose(add2, multiplyBy3);
     const result = composed(4);
-    assert.strictEqual(result, 4 * 3 + 2); // 14
+    assert.strictEqual(result, 4 * 3 + 2);
   });
 
   it("should return the initial value if no functions are provided", () => {
@@ -53,7 +59,6 @@ describe("compose", () => {
   });
 });
 
-// Specifications for the `identity` function
 describe("identity", () => {
   it("should return the input value unchanged", () => {
     assert.strictEqual(identity(5), 5);
@@ -62,7 +67,6 @@ describe("identity", () => {
   });
 });
 
-// Specifications for the `composePredicates` function
 describe("composePredicates", () => {
   it("should return true if all predicates return true", () => {
     const isEven = (x) => x % 2 === 0;
@@ -70,7 +74,7 @@ describe("composePredicates", () => {
 
     const composed = composePredicates(isEven, isPositive);
     const result = composed(4);
-    assert.strictEqual(result, true); // 4 is even and positive
+    assert.strictEqual(result, true);
   });
 
   it("should return false if any predicate returns false", () => {
@@ -79,6 +83,88 @@ describe("composePredicates", () => {
 
     const composed = composePredicates(isEven, isPositive);
     const result = composed(-2);
-    assert.strictEqual(result, false); // -2 is even but not positive
+    assert.strictEqual(result, false);
+  });
+});
+
+describe("curry", () => {
+  const sum = (x, y) => x + y;
+
+  it("should correctly curry a function", () => {
+    const curriedSum = curry(sum);
+    assert.strictEqual(curriedSum(2)(3), 5);
+  });
+
+  it("should handle multiple arguments at once", () => {
+    const curriedSum = curry(sum);
+    assert.strictEqual(curriedSum(2, 3), 5);
+  });
+});
+
+describe("pipe", () => {
+  const double = (x) => x * 2;
+
+  it("should correctly pipe multiple functions", () => {
+    const sum = (x, y) => x + y;
+    const piped = pipe(double, sum.bind(null, 3));
+    assert.strictEqual(piped(2), 7);
+  });
+});
+
+describe("mapObject", () => {
+  const double = (x) => x * 2;
+
+  it("should correctly map object values", () => {
+    const obj = { a: 1, b: 2 };
+    const mapped = mapObject(double)(obj);
+    assert.deepStrictEqual(mapped, { a: 2, b: 4 });
+  });
+});
+
+describe("filterObject", () => {
+  const isEven = (x) => x % 2 === 0;
+
+  it("should correctly filter object keys", () => {
+    const obj = { a: 1, b: 2, c: 3 };
+    const filtered = filterObject(isEven)(obj);
+    assert.deepStrictEqual(filtered, { b: 2 });
+  });
+});
+
+describe("maybe", () => {
+  const double = (x) => x * 2;
+
+  it("should apply the function when the input is not null or undefined", () => {
+    const maybeDouble = maybe(double);
+    assert.strictEqual(maybeDouble(4), 8);
+  });
+
+  it("should return the input as is when it is null or undefined", () => {
+    const maybeDouble = maybe(double);
+    assert.strictEqual(maybeDouble(null), null);
+    assert.strictEqual(maybeDouble(undefined), undefined);
+  });
+});
+
+describe("either", () => {
+  const double = (x) => x * 2;
+
+  it("should apply the right function for non-null input", () => {
+    const eitherTest = either(() => "left", double);
+    assert.strictEqual(eitherTest(4), 8);
+  });
+
+  it("should apply the left function for null input", () => {
+    const eitherTest = either(() => "left", double);
+    assert.strictEqual(eitherTest(null), "left");
+  });
+});
+
+describe("foldObject", () => {
+  it("should correctly fold object values", () => {
+    const sumValues = (acc, value) => acc + value;
+    const obj = { a: 1, b: 2, c: 3 };
+    const folded = foldObject(sumValues, 0)(obj);
+    assert.strictEqual(folded, 6);
   });
 });
