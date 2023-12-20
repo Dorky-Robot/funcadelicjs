@@ -4,61 +4,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Funcadelic.js Test</title>
-  <script src="funcadelic.bundle.min.js"></script> <!-- Include your bundled JS file -->
+  <title>katha.js Test</title>
+  <script src="katha.bundle.min.js"></script> <!-- Include your bundled JS file -->
 </head>
 
 <body>
   <script>
-    console.log('Funcadelic.js Functionality Demonstration');
+    console.log('katha.js Functionality Demonstration');
 
     // compose function
     const addOne = x => x + 1;
     const double = x => x * 2;
-    const composedFunc = funcadelic.compose(double, addOne);
+    const composedFunc = katha.compose(double, addOne);
     console.log('compose: ' + composedFunc(3)); // Should output 8
 
     // identity function
-    console.log('identity: ' + funcadelic.identity(5)); // Should output 5
+    console.log('identity: ' + katha.identity(5)); // Should output 5
 
     // threadFirst function
     const add = (x, y) => x + y;
     const multiply = (x, y) => x * y;
-    console.log('threadFirst: ' + funcadelic.threadFirst(2, [add, 2], [multiply, 3])); // Should output 12
+    console.log('threadFirst: ' + katha.threadFirst(2, [add, 2], [multiply, 3])); // Should output 12
 
     // composePredicates function
     const isEven = x => x % 2 === 0;
     const isPositive = x => x > 0;
-    const composedPredicate = funcadelic.composePredicates(isEven, isPositive);
+    const composedPredicate = katha.composePredicates(isEven, isPositive);
     console.log('composePredicates: ' + composedPredicate(4)); // Should output true
     console.log('composePredicates: ' + composedPredicate(-2)); // Should output false
 
     // curry function
-    const curriedSum = funcadelic.curry((a, b, c) => a + b + c);
+    const curriedSum = katha.curry((a, b, c) => a + b + c);
     console.log('curry: ' + curriedSum(1)(2)(3)); // Should output 6
 
     // pipe function
-    const pipedFunc = funcadelic.pipe(addOne, double);
+    const pipedFunc = katha.pipe(addOne, double);
     console.log('pipe: ' + pipedFunc(3)); // Should output 8
 
     // mapObject function
     const obj = { a: 1, b: 2 };
-    console.log('mapObject: ', funcadelic.mapObject(double)(obj)); // Should output { a: 2, b: 4 }
+    console.log('mapObject: ', katha.mapObject(double)(obj)); // Should output { a: 2, b: 4 }
 
     // filterObject function
-    console.log('filterObject: ', funcadelic.filterObject(isEven)(obj)); // Should output { b: 2 }
+    console.log('filterObject: ', katha.filterObject(isEven)(obj)); // Should output { b: 2 }
 
     // maybe function
-    console.log('maybe: ' + funcadelic.maybe(double)(5)); // Should output 10
-    console.log('maybe: ' + funcadelic.maybe(double)(null)); // Should output null
+    console.log('maybe: ' + katha.maybe(double)(5)); // Should output 10
+    console.log('maybe: ' + katha.maybe(double)(null)); // Should output null
 
     // either function
     const handleNull = () => 'Null input';
-    console.log('either: ' + funcadelic.either(handleNull, double)(null)); // Should output 'Null input'
-    console.log('either: ' + funcadelic.either(handleNull, double)(5)); // Should output 10
+    console.log('either: ' + katha.either(handleNull, double)(null)); // Should output 'Null input'
+    console.log('either: ' + katha.either(handleNull, double)(5)); // Should output 10
 
     // foldObject function
-    console.log('foldObject: ' + funcadelic.foldObject((acc, value) => acc + value, 0)(obj)); // Should output 3
+    console.log('foldObject: ' + katha.foldObject((acc, value) => acc + value, 0)(obj)); // Should output 3
   </script>
 
 </body>

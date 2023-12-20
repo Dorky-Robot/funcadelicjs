@@ -1,8 +1,8 @@
 {
-  "name": "funcadelic.js",
+  "name": "katha.js",
   "version": "0.12.0",
-  "description": "FuncadelicJS: Dive into a groovy world of functional programming, served fresh in plain ESM js.",
-  "main": "funcadelic.js",
+  "description": "Katha.js: Make stuff with functional programming.",
+  "main": "katha.js",
   "scripts": {
     "test": "mocha ./*.test.js",
     "build": "rollup -c"
@@ -10,19 +10,22 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dorky-Robot/funcadelicjs.git"
+    "url": "git+https://github.com/Dorky-Robot/katha.js.git"
   },
   "keywords": [
     "functional",
     "util",
-    "pure"
+    "pure",
+    "composition",
+    "currying",
+    "monads"
   ],
   "author": "Felix Flores",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Dorky-Robot/funcadelicjs/issues"
+    "url": "https://github.com/Dorky-Robot/katha.js/issues"
   },
-  "homepage": "https://github.com/Dorky-Robot/funcadelicjs#readme",
+  "homepage": "https://github.com/Dorky-Robot/katha.js#readme",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",

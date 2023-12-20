@@ -3,18 +3,18 @@ import commonjs from "@rollup/plugin-commonjs";
 import terser from "@rollup/plugin-terser";
 
 export default {
-  input: "funcadelic.js", // Your entry point
+  input: "katha.js", // Your entry point
   output: [
     {
-      file: "dist/funcadelic.bundle.js", // Unminified output file
+      file: "dist/katha.bundle.js", // Unminified output file
       format: "umd", // Universal Module Definition
-      name: "funcadelic", // Name of your package
+      name: "katha", // Name of your package
       esModule: false,
     },
     {
-      file: "dist/funcadelic.bundle.min.js", // Minified output file
+      file: "dist/katha.bundle.min.js", // Minified output file
       format: "umd", // Universal Module Definition
-      name: "funcadelic", // Name of your package
+      name: "katha", // Name of your package
       esModule: false,
       plugins: [terser()], // Minifies the bundle
     },

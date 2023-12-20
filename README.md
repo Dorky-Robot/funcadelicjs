@@ -1,38 +1,57 @@
-![Functional.js Logo](logo.png)
+# Katha.js
 
-# 🤖 funcadelic.js
+Katha.js is a modern functional programming utility library for JavaScript. It offers a suite of tools to enhance the functional programming paradigm in JavaScript applications, making code more concise, readable, and maintainable.
 
-Hello, Functional Enthusiasts! Welcome to the quirky land of `funcadelic.js`, a place where JavaScript meets functional programming. If you ever thought that programming could use a sprinkle of fun, then you're in the right place. 🎡
+## Why Use Katha.js?
 
-## Overview 🎪
+Katha.js simplifies common functional programming tasks in JavaScript, providing powerful utilities like function composition, currying, and more. It's designed to improve the developer experience by offering intuitive and easy-to-use functional constructs.
 
-`funcadelic.js` is a set of functional utilities implemented in pure ESM JS. It's like giving your JavaScript a functional candy 🍬 that tastes _purely_ sweet! Whether you want to compose functions like a maestro, tread through them seamlessly, or just need an identity check for your existential crises, `funcadelic.js` has got you covered.
+## Getting Started
 
-## Features 🎢
+Include Katha.js in your project to start using its functional utilities.
 
-- **Compose**: Mix and match functions like ingredients in a magical potion. 🍵
-- **Identity**: Because sometimes, you just need to be yourself! 🦄
-- **ThreadFirst**: Thread through your functions as if you're weaving through a carnival maze. 🌪
-- **ComposePredicates**: Because why have one predicate when you can have a party of them? 🎉
+### Installation
 
-## How to Contribute 🤹
+To install Katha.js, run the following command in your project directory:
 
-We believe in the magic of collaboration! If you're a wizard, witch, or even a muggle with an idea, here's how you can join the `funcadelic.js` carnival:
+```
+npm install katha.js
+```
 
-1. **Fork and Clone**: Fork this repository and clone it to your local machine. Make sure you have the spell book (a.k.a. `package.json`) with you.
-2. **Branch Out**: Create a new branch for your enchanting feature or spellbinding fix.
-3. **Write the Magic**: Implement your feature or fix, but wait! For every spell you cast (a.k.a. function you write), you need to craft its prophecy (a.k.a. specs or tests). We believe in the saying: "A function without specs is like a wizard without a wand!" 🪄
-4. **Test the Magic**: Run the tests using the command `npm test`. Ensure that all the prophecies come true.
-5. **Pull Request**: Once your magic is ready, create a Pull Request against our main branch. Our team of magical creatures will review it and, if deemed worthy, will integrate it into our grand spell book.
+### Usage
 
-## Bugs & Issues 🕷
+Import the functions you need from Katha.js:
 
-Encountered a dragon? 🐉 Or maybe just a bug? Head over to our [issues](https://github.com/Dorky-Robot/funcadelicjs/issues) section and let us know. We'll summon our best dragon tamers and bug squashers!
+```javascript
+import { compose, curry, pipe } from "katha.js";
 
-## Author 🧙
+// Example usage
+const add = (a, b) => a + b;
+const multiply = (a, b) => a * b;
+const addThenMultiply = compose(multiply, add);
+console.log(addThenMultiply(2, 3, 2)); // Outputs: 10
+```
 
-Crafted with love and magic by [Felix Flores](https://github.com/Dorky-Robot). He's not a real wizard, but he sure does some enchanting coding!
+## Features
 
-## License 📜
+Katha.js includes a variety of functional programming utilities:
 
-Licensed under the ISC license. Basically, it's a spell that lets you use, modify, and distribute the code, but you can't sue us if it turns your codebase into a pumpkin at midnight.
+- **compose**: Combine multiple functions into a single function.
+- **curry**: Transform a multi-argument function into a sequence of nested unary functions.
+- **pipe**: Create a pipeline of functions, where the output of one function is the input to the next.
+- **mapObject**: Apply a transformation function to each value of an object.
+- **filterObject**: Filter an object's properties based on a predicate function.
+- **either**: Choose between two functions based on the input.
+- **foldObject**: Reduce an object's key-value pairs to a single value.
+
+## Contributing
+
+Contributions to Katha.js are welcome! Please read our contribution guidelines for details on how to contribute to the project.
+
+## Reporting Issues
+
+If you encounter any issues or bugs while using Katha.js, please report them in our [issues tracker](https://github.com/Dorky-Robot/katha.js/issues).
+
+## License
+
+Katha.js is licensed under the ISC license. See the LICENSE file for more details.

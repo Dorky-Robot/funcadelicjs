@@ -1,5 +1,5 @@
 import assert from "assert";
-import * as funcadelic from "./funcadelic.js";
+import * as katha from "./katha.js";
 
 const {
   threadFirst,
@@ -13,7 +13,7 @@ const {
   maybe,
   either,
   foldObject,
-} = funcadelic;
+} = katha;
 
 describe("threadFirst", () => {
   const sum = (x, y) => x + y;
