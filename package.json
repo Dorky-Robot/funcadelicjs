@@ -1,6 +1,6 @@
 {
   "name": "funcadelic.js",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "FuncadelicJS: Dive into a groovy world of functional programming, served fresh in plain ESM js.",
   "main": "funcadelic.js",
   "scripts": {

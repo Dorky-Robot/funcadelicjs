@@ -6,13 +6,13 @@ export default {
   input: "funcadelic.js", // Your entry point
   output: [
     {
-      file: "dist/bundle.js", // Unminified output file
+      file: "dist/funcadelic.bundle.js", // Unminified output file
       format: "umd", // Universal Module Definition
       name: "funcadelic", // Name of your package
       esModule: false,
     },
     {
-      file: "dist/bundle.min.js", // Minified output file
+      file: "dist/funcadelic.bundle.min.js", // Minified output file
       format: "umd", // Universal Module Definition
       name: "funcadelic", // Name of your package
       esModule: false,
