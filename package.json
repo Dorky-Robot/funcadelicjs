@@ -1,10 +1,11 @@
 {
   "name": "funcadelic.js",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "FuncadelicJS: Dive into a groovy world of functional programming, served fresh in plain ESM js.",
   "main": "funcadelic.js",
   "scripts": {
-    "test": "mocha ./*.test.js"
+    "test": "mocha ./*.test.js",
+    "build": "rollup -c"
   },
   "type": "module",
   "repository": {
@@ -23,6 +24,10 @@
   },
   "homepage": "https://github.com/Dorky-Robot/funcadelicjs#readme",
   "devDependencies": {
-    "mocha": "^10.2.0"
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "mocha": "^10.2.0",
+    "rollup": "^4.9.1"
   }
 }
