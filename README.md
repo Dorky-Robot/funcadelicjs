@@ -1,5 +1,7 @@
 # Katha.js
 
+![katha.png](katha.png)
+
 Katha.js is a compact yet mighty functional programming utility library for JavaScript. Designed to be small and straightforward, it provides all the essential tools for functional programming without any unnecessary complexity. Katha.js streamlines your code, making it more concise, readable, and maintainable, ensuring you have everything you need for functional programming in a neat and simple package.
 
 Katha.js simplifies common functional programming tasks in JavaScript, providing powerful utilities like function composition, currying, and more. It's designed to improve the developer experience by offering intuitive and easy-to-use functional constructs.
