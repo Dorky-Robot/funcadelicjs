@@ -6,7 +6,7 @@ Katha.js is a modern functional programming utility library for JavaScript. It o
 
 Katha.js simplifies common functional programming tasks in JavaScript, providing powerful utilities like function composition, currying, and more. It's designed to improve the developer experience by offering intuitive and easy-to-use functional constructs.
 
-ith Katha:
+With Katha:
 
 ```javascript
 const processObject = katha.pipe(
