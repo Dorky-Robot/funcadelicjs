@@ -1,6 +1,6 @@
 {
   "name": "katha.js",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "Katha.js: Make stuff with functional programming.",
   "main": "katha.js",
   "scripts": {
