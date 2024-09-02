@@ -119,6 +119,18 @@ describe("mapObject", () => {
     const mapped = mapObject(double)(obj);
     assert.deepStrictEqual(mapped, { a: 2, b: 4 });
   });
+
+  it("should correctly map array values", () => {
+    const arr = [1, 2, 3];
+    const mapped = mapObject(double)(arr);
+    assert.deepStrictEqual(mapped, [2, 4, 6]);
+  });
+
+  it("should correctly map values passed as multiple arguments", () => {
+    const double = x => x * 2;
+    const result = mapObject(double)(null, 1, 2, 3);  // null is intended to be ignored
+    assert.deepStrictEqual(result, [2, 4, 6]);  // Check without the leading 0 that would result from null being processed
+  });
 });
 
 describe("filterObject", () => {

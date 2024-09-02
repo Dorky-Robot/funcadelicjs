@@ -12,8 +12,8 @@
  */
 export const compose =
   (...fns) =>
-  (initialVal) =>
-    fns.reduceRight((val, fn) => fn(val), initialVal);
+    (initialVal) =>
+      fns.reduceRight((val, fn) => fn(val), initialVal);
 
 /**
  * A utility function that returns the input value unchanged. Often used as a default or placeholder function in functional programming.
@@ -101,26 +101,50 @@ export const curry = (fn) => {
  */
 export const pipe =
   (...fns) =>
-  (initialVal) =>
-    fns.reduce((val, fn) => fn(val), initialVal);
+    (initialVal) =>
+      fns.reduce((val, fn) => fn(val), initialVal);
 
 /**
- * Maps an object's values using a provided function. This function takes an object and a mapping function, and returns a new object where each value has been transformed by the mapping function.
+ * Maps values using a provided function across various data structures: objects, arrays, or multiple arguments.
+ * When given an object, it returns a new object with each value transformed by the function.
+ * When given an array, it returns a new array with each element transformed.
+ * When multiple arguments are passed, it maps the function over each argument starting from the second one.
  *
- * @param {Function} fn - A function to apply to each value in the object. The function receives the value as its argument.
- * @returns {Function} A function that takes an object and returns a new object with transformed values.
+ * @param {Function} fn - A function to apply to each value. The function receives the value as its argument.
+ * @returns {Function} A function that:
+ *   - Takes an object and returns a new object with transformed values.
+ *   - Takes an array and returns a new array with transformed elements.
+ *   - Takes multiple arguments and returns an array of transformed values.
  *
  * Example:
- *  const double = x => x * 2;
- *  const obj = { a: 1, b: 2 };
- *  mapObject(double)(obj); // Returns { a: 2, b: 4 }
+ *   // For object:
+ *   const double = x => x * 2;
+ *   const obj = { a: 1, b: 2 };
+ *   console.log(mapObject(double)(obj)); // Returns { a: 2, b: 4 }
+ *
+ *   // For array:
+ *   const arr = [1, 2, 3];
+ *   console.log(mapObject(double)(arr)); // Returns [2, 4, 6]
+ *
+ *   // For multiple arguments:
+ *   console.log(mapObject(double)(null, 1, 2, 3)); // Returns [2, 4, 6]
  */
-export const mapObject = (fn) => (obj) =>
-  Object.keys(obj).reduce((acc, key) => {
-    acc[key] = fn(obj[key]);
-    return acc;
-  }, {});
-
+export const mapObject = (fn) => {
+  return function (...args) {
+    const input = args[0];
+    if (Array.isArray(input)) {
+      return input.map(fn);
+    } else if (input !== null && typeof input === 'object') {
+      return Object.keys(input).reduce((acc, key) => {
+        acc[key] = fn(input[key]);
+        return acc;
+      }, {});
+    } else {
+      // If the first argument is null, start mapping from the second argument
+      return args.slice(input === null ? 1 : 0).map(fn);
+    }
+  };
+};
 /**
  * Filters an object's properties based on a predicate function. This function takes a predicate and returns a new function. The new function, when applied to an object, returns a new object containing only the properties for which the predicate returns true.
  *

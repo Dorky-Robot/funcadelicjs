@@ -106,7 +106,7 @@ console.log(addOneThenDouble(3)); // Outputs: 8
 `identity` is the epitome of simplicity, returning whatever it's given, unaltered — perfect for situations where a no-operation function is needed.
 
 ```javascript
-console.log(identity("Katha.js")); // Outputs: 'Katha.js'
+console.log(identity('Katha.js')); // Outputs: 'Katha.js'
 ```
 
 ### ThreadFirst
@@ -149,15 +149,38 @@ const pipeExample = pipe(addOne, double);
 console.log(pipeExample(3)); // Outputs: 8
 ```
 
-### MapObject
+### `mapObject`
 
-`mapObject` applies a transformation function to each value in an object, enabling efficient and concise data manipulation.
+The `mapObject` function has been enhanced to support a wider range of inputs, making it versatile for handling objects, arrays, and multiple arguments:
 
-```javascript
-const obj = { a: 1, b: 2 };
-const doubledValues = mapObject(double)(obj);
-console.log(doubledValues); // Outputs: { a: 2, b: 4 }
-```
+#### Features
+
+- **Objects**: Transforms each value in an object using a specified function, returning a new object with the transformed values.
+- **Arrays**: Applies a function to each element in an array, returning a new array with the results.
+- **Multiple Arguments**: Maps a function over multiple arguments. If the first argument is `null`, it skips the first and starts mapping from the second argument.
+
+#### Usage Examples
+
+1. **Object Mapping:**
+
+   ```javascript
+   const double = (x) => x * 2;
+   const obj = { a: 1, b: 2 };
+   console.log(mapObject(double)(obj)); // Returns { a: 2, b: 4 }
+   ```
+
+2. **Array Mapping:**
+
+   ```javascript
+   const arr = [1, 2, 3];
+   console.log(mapObject(double)(arr)); // Returns [2, 4, 6]
+   ```
+
+3. **Mapping Multiple Arguments:**
+   ```javascript
+   // Note: If the first argument is null, it is ignored.
+   console.log(mapObject(double)(null, 1, 2, 3)); // Returns [2, 4, 6]
+   ```
 
 ### FilterObject
 
@@ -183,7 +206,7 @@ console.log(maybeDouble(null)); // Outputs: null
 `either` elegantly chooses between two functions based on the nullity of the input, simplifying conditional logic.
 
 ```javascript
-const eitherExample = either(() => "Null input", double);
+const eitherExample = either(() => 'Null input', double);
 console.log(eitherExample(null)); // Outputs: 'Null input'
 console.log(eitherExample(5)); // Outputs: 10
 ```
