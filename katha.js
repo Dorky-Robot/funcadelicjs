@@ -101,9 +101,9 @@ export const curry = (fn) => {
  */
 export const pipe = (...fns) => async (initialVal) => {
   return fns.reduce(async (acc, fn) => {
-    const res = await acc;  // Ensure the previous value is resolved if it's a promise
-    return fn(res);
-  }, initialVal);
+    const resolvedAcc = await acc; // Ensure the previous value is resolved if it's a promise
+    return fn(resolvedAcc);
+  }, Promise.resolve(initialVal)); // Start with a resolved promise of the initial value
 };
 
 /**

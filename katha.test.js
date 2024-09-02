@@ -123,7 +123,14 @@ describe("pipe", () => {
     const result = await piped(2);
     assert.strictEqual(result, 8);  // (2 * 2) * 2
   });
-})
+
+  // Ensure that the pipe implementation can handle an initial asynchronous function
+  it("should handle initial asynchronous function", async () => {
+    const piped = pipe(asyncDouble, double, addThree);
+    const result = await piped(2);
+    assert.strictEqual(result, 11);  // ((2 * 2) * 2) + 3
+  });
+});
 
 describe("mapObject", () => {
   const double = (x) => x * 2;
