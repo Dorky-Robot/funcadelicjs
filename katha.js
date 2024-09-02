@@ -99,10 +99,12 @@ export const curry = (fn) => {
  *  const pipedFunc = pipe(addOne, double);
  *  pipedFunc(3); // Returns 8 (4 * 2)
  */
-export const pipe =
-  (...fns) =>
-    (initialVal) =>
-      fns.reduce((val, fn) => fn(val), initialVal);
+export const pipe = (...fns) => async (initialVal) => {
+  return fns.reduce(async (acc, fn) => {
+    const res = await acc;  // Ensure the previous value is resolved if it's a promise
+    return fn(res);
+  }, initialVal);
+};
 
 /**
  * Maps values using a provided function across various data structures: objects, arrays, or multiple arguments.

@@ -103,13 +103,27 @@ describe("curry", () => {
 
 describe("pipe", () => {
   const double = (x) => x * 2;
+  const addThree = (x) => x + 3;
+  const asyncDouble = async (x) => x * 2;
 
-  it("should correctly pipe multiple functions", () => {
-    const sum = (x, y) => x + y;
-    const piped = pipe(double, sum.bind(null, 3));
-    assert.strictEqual(piped(2), 7);
+  it("should correctly pipe multiple synchronous functions", async () => {
+    const piped = pipe(double, addThree);
+    const result = await piped(2);
+    assert.strictEqual(result, 7);  // (2 * 2) + 3
   });
-});
+
+  it("should correctly pipe synchronous and asynchronous functions", async () => {
+    const piped = pipe(double, asyncDouble, addThree);
+    const result = await piped(2);
+    assert.strictEqual(result, 11);  // ((2 * 2) * 2) + 3
+  });
+
+  it("should handle all asynchronous functions", async () => {
+    const piped = pipe(asyncDouble, asyncDouble);
+    const result = await piped(2);
+    assert.strictEqual(result, 8);  // (2 * 2) * 2
+  });
+})
 
 describe("mapObject", () => {
   const double = (x) => x * 2;
