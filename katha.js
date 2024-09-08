@@ -99,11 +99,13 @@ export const curry = (fn) => {
  *  const pipedFunc = pipe(addOne, double);
  *  pipedFunc(3); // Returns 8 (4 * 2)
  */
-export const pipe = (...fns) => async (initialVal) => {
-  return fns.reduce(async (acc, fn) => {
-    const resolvedAcc = await acc; // Ensure the previous value is resolved if it's a promise
-    return fn(resolvedAcc);
-  }, Promise.resolve(initialVal)); // Start with a resolved promise of the initial value
+export const pipe = (...fns) => (initialVal) => {
+  return fns.reduce((acc, fn) => {
+    if (acc instanceof Promise) {
+      return acc.then(fn);
+    }
+    return fn(acc);
+  }, initialVal);
 };
 
 /**
