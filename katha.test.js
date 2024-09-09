@@ -89,6 +89,7 @@ describe("composePredicates", () => {
 
 describe("curry", () => {
   const sum = (x, y) => x + y;
+  const asyncSum = async (x, y) => Promise.resolve(x + y);
 
   it("should correctly curry a function", () => {
     const curriedSum = curry(sum);
@@ -98,6 +99,72 @@ describe("curry", () => {
   it("should handle multiple arguments at once", () => {
     const curriedSum = curry(sum);
     assert.strictEqual(curriedSum(2, 3), 5);
+  });
+
+  it("should work with async functions", async () => {
+    const curriedAsyncSum = curry(asyncSum);
+    assert.strictEqual(await curriedAsyncSum(2)(3), 5);
+    assert.strictEqual(await curriedAsyncSum(2, 3), 5);
+  });
+
+  it("should allow partial application with async functions", async () => {
+    const curriedAsyncSum = curry(asyncSum);
+    const add2 = curriedAsyncSum(2);
+    assert.strictEqual(await add2(3), 5);
+    assert.strictEqual(await add2(5), 7);
+  });
+
+  it("should handle functions with more than two arguments", () => {
+    const multiply3 = (x, y, z) => x * y * z;
+    const curriedMultiply3 = curry(multiply3);
+    assert.strictEqual(curriedMultiply3(2)(3)(4), 24);
+    assert.strictEqual(curriedMultiply3(2, 3)(4), 24);
+    assert.strictEqual(curriedMultiply3(2)(3, 4), 24);
+    assert.strictEqual(curriedMultiply3(2, 3, 4), 24);
+  });
+
+  it("should work with functions that return functions", () => {
+    const createAdder = (x) => (y) => x + y;
+    const curriedCreateAdder = curry(createAdder);
+    const add5 = curriedCreateAdder(5);
+    assert.strictEqual(add5(3), 8);
+  });
+
+  it("should maintain the correct context", function () {
+    const obj = {
+      value: 5,
+      add: function (x) { return this.value + x; }
+    };
+    const curriedAdd = curry(obj.add.bind(obj));
+    assert.strictEqual(curriedAdd(3), 8);
+  });
+
+  it("should handle edge cases", () => {
+    const identity = curry(x => x);
+    assert.strictEqual(identity(5), 5);
+
+    const constant = curry(() => 42);
+    assert.strictEqual(constant(), 42);
+  });
+
+  it("should work with async functions that return functions", async () => {
+    const asyncCreateAdder = async (x) => (y) => x + y;
+    const curriedAsyncCreateAdder = curry(asyncCreateAdder);
+    const add5Promise = curriedAsyncCreateAdder(5);
+    const add5 = await add5Promise;
+    assert.strictEqual(add5(3), 8);
+  });
+
+  it("should handle complex nested currying scenarios", async () => {
+    const complexFunction = curry(async (a, b) => {
+      const sum = await asyncSum(a, b);
+      return curry((c, d) => sum + c + d);
+    });
+
+    const step1 = complexFunction(1);
+    const step2 = await step1(2);
+    const result = await step2(3)(4);
+    assert.strictEqual(result, 10); // 1 + 2 + 3 + 4
   });
 });
 

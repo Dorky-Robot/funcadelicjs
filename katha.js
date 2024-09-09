@@ -84,9 +84,18 @@ export const curry = (fn) => {
     args.length >= fn.length
       ? fn(...args)
       : (...more) => curried(...args, ...more);
-  return curried;
-};
 
+  return (...args) => {
+    const result = curried(...args);
+    return result instanceof Promise
+      ? result.then(resolvedResult =>
+        resolvedResult instanceof Function
+          ? curry(resolvedResult)
+          : resolvedResult
+      )
+      : result;
+  };
+};
 /**
  * Similar to 'compose', 'pipe' takes a sequence of functions and returns a new function. However, unlike 'compose', 'pipe' applies the functions from left to right. This is useful for creating a pipeline of functions where the output of one function is the input to the next.
  *
